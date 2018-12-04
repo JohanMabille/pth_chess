@@ -16,7 +16,7 @@ namespace dauphine
 	black;
   }*/
 
-
+  class engine;
 
   class piece 
   {
@@ -29,10 +29,9 @@ namespace dauphine
 	piece& operator= (const piece&) = delete;
 	piece(piece&&) = delete;
 	piece& operator= (piece&&) = delete;
-
-	//sémentique d'entrée
 	
 	void set_position(std::size_t row, std::size_t col);
+	color get_color() const;
 	virtual bool can_move(std::size_t row, std::size_t col) const = 0;	
 
 
@@ -43,6 +42,7 @@ namespace dauphine
 	std::size_t m_row;
 	std::size_t m_col;
 	color m_color;
+	engine* p_engine;
   }
 
 
@@ -54,10 +54,10 @@ namespace dauphine
   {
     public:
 	
-	pawn(std::size_t row, std::size_t col);
-	virtual ~pawn();
+	pawn(std::size_t row, std::size_t col, color c, engine e);
+	virtual ~piece();
 
-	bool can_move(std::size_t row, std::size_t col/*, color c/*);
+	bool can_move(std::size_t row, std::size_t col);
 
   }
 
